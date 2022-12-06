@@ -1,0 +1,43 @@
+% Plot of conversion vs rate for second order reaction
+clc;
+% initialization
+global concentration;
+conversion = 0:0.01:1;
+%size(conversion)
+concentration = 1; %Initial concentration in moles/litres
+rate_constant = [1 2 3]'; %mol/lit-min
+rate = rate_constant.*concentration^2*(1-conversion); %rate expression
+rate_inv = rate.^(-1);
+rate_inv(1,:);
+figure1=figure('position',[100 100 600 600]);
+axis1 = axes('position',[0.1 0.1 0.8 0.8]);
+p1 = plot(conversion,rate_inv(1,:));
+hold on
+p2 = plot(conversion,rate_inv(2,:));
+hold on
+p3 = plot(conversion,rate_inv(3,:));
+hold off
+set(p1,'linewidth',1,'color',[1 0 0],'linestyle','-
+','marker','o','markersize',5,'markerfacecolor','red','markeredgecolor',[1 0 0]);
+set(p2,'linewidth',1,'color',[0 1 0],'linestyle','-
+.','marker','d','markersize',5,'markerfacecolor','green','markeredgecolor',[0 1
+0]);
+set(p3,'linewidth',1,'color',[0 0 1],'linestyle','--
+','marker','*','markersize',5,'markerfacecolor','none','markeredgecolor',[0 0 1]);
+xlabel('Conversion','fontname','times new roman',
+'fontweight','bold','fontsize',12);
+ylabel('1/Rate, (mol/min)^{-1}','fontname','times new roman',
+'fontweight','bold','fontsize',14);
+title('Conversion vs Rate plot (2nd order reaction)','fontname','times new roman',
+'fontweight','bold','fontsize',16);
+legend({'rate constant = 1','rate constant = 2','rate constant =
+3'},'location','northeast','fontname','times new roman', ...
+'fontsize',11,'fontweight','bold');
+set(gca,'XLim',[0 1]);
+set(gca,'XTick',0:0.2:1);
+set(gca, 'xscale','log')
+set(gca,'YLim',[0 100]);
+set(gca,'YTick',0:20:100);
+set(gca, 'yscale','log')
+set(gca,'Box','on','fontweight','bold','fontsize',12,'linewidth',1.1);
+
